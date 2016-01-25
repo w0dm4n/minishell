@@ -29,5 +29,7 @@ int			check_cmd(char *cmd);
 void		do_cmd(char *cmd, char *cmd_args);
 void		chdir_command(char *args);
 char		*get_env(char *tofind);
+void		print_all_env(void);
+void		set_env(char *env, char *value_to_set);
 char		**g_env;
 #endif

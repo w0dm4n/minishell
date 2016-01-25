@@ -17,8 +17,10 @@ int		check_cmd(char *cmd)
 	if (!ft_strcmp(cmd, "cd") ||
 		!ft_strcmp(cmd, "setenv") ||
 		!ft_strcmp(cmd, "env") ||
-		!ft_strcmp(cmd, "exit") || 
-		!ft_strcmp(cmd, "clear"))
+		!ft_strcmp(cmd, "exit") ||
+		!ft_strcmp(cmd, "clear") ||
+		!ft_strcmp(cmd, "whoami") ||
+		!ft_strcmp(cmd, "pwd"))
 		return (1);
 	else
 	{

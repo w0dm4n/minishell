@@ -18,8 +18,8 @@ void		change_folder(char *path)
 
 	old_pwd = get_env("PWD");
 	chdir(path);
-	//set_env("PWD", path);
-	//set_env("OLD_PWD", old_pwd)
+	set_env("PWD", path);
+	set_env("OLDPWD", old_pwd);
 }
 
 int			get_args_nbr(char *args)
@@ -47,9 +47,15 @@ void		chdir_command(char *args)
 	else
 	{
 		args_nbr = get_args_nbr(args);
+		args = ft_strtrim(args);
 		if (args_nbr == 1)
 		{
-			// just go on the folder
+			if (!ft_strcmp(args, "-"))
+				change_folder(get_env("OLDPWD"));
+			else
+			{
+				//just go on the folder
+			}
 		}
 		else if (args_nbr == 2)
 		{

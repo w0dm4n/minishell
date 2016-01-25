@@ -58,7 +58,7 @@ void	handle_cmd(char *buffer)
 		while (i < pos)
 		{
 			if (buffer[i] != '\n')
-				get_cmd[i] =* ft_strdup(&buffer[i]);
+				get_cmd[i] = *ft_strdup(&buffer[i]);
 			i++;
 		}
 		get_cmd[i] = '\0';
