@@ -41,7 +41,6 @@ void		change_folder(char *path)
 
 	old_pwd = get_env("PWD");
 	chdir(path);
-	ft_putstr(path);
 	set_env("PWD", path);
 	set_env("OLDPWD", old_pwd);
 }
