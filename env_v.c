@@ -27,6 +27,7 @@ char	*replace_env(char *env, char *new_value)
 	size = (ft_strlen(new_value + 1) + i);
 	if (!(new = malloc(sizeof(char) * size)))
 		return (NULL);
+	ft_bzero(new, size);
 	i = 0;
 	while (env[i] != '=')
 	{
@@ -41,6 +42,7 @@ char	*replace_env(char *env, char *new_value)
 		i++;
 		i_2++;
 	}
+	new[i] = '\0';
 	return (new);
 }
 

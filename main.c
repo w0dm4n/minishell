@@ -19,4 +19,5 @@ int		main(int argc, char **argv, char **env_p)
 		ft_putstr("Minishell do not take any argument !\n");
 	else
 		read_entry();
+	return (0);
 }
