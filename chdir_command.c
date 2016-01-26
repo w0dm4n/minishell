@@ -71,7 +71,10 @@ void		chdir_command(char *args)
 	if (!(path = (char*)malloc(sizeof(char) * READ_BUFFER)))
 		return ;
 	if (!args || !ft_strcmp(args, " ~"))
-		change_folder(get_env("HOME"), 1);
+	{
+		if (get_path(get_env("HOME"), NULL))
+			change_folder(get_env("HOME"), 1);
+	}
 	else
 	{
 		args_nbr = get_args_nbr(args);
@@ -93,10 +96,6 @@ void		chdir_command(char *args)
 					change_folder(path, 0);
 				}
 			}
-		}
-		else if (args_nbr == 2)
-		{
-			// add at the start of the path the second args and go in
 		}
 		else
 			ft_putstr("cd: too many arguments");

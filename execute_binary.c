@@ -12,6 +12,56 @@
 
 #include "all.h"
 
+char		*get_name(char *name)
+{
+	char	*new;
+	int		size;
+
+	size = (ft_strlen(name) + 3);
+	if (!(new = malloc(sizeof(char) * size)))
+		return (NULL);
+	new = ft_strcat(new, "./");
+	new = ft_strcat(new, name);
+	free(name);
+	return (new);
+}
+
+char		**add_file_name(char **argv, char *name)
+{
+	char	**new;
+	int		size;
+	int		i;
+
+	size = 0;
+	i = 0;
+	while (argv[size])
+		size++;
+	if (!(new = malloc(sizeof(char*) * MAX_ARGV_SIZE)))
+		return (NULL);
+	new = ft_set_null(new);
+	new[0] = get_name(name);
+	size = 1;
+	while (argv[i])
+	{
+		new[size] = ft_strdup(argv[i]);
+		i++;
+		size++;
+	}
+	free_argv(argv);
+	return (new);
+}
+
+char		**set_argv(char **argv, char *name)
+{
+	if (!argv)
+	{
+		if (!(argv = malloc(sizeof(char*) * 1)))
+			return (NULL);
+		argv[0] = get_name(name);
+	}
+	return (argv);
+}
+
 void		launch_process(char *path, char *name, char *cmd, char **env)
 {
 	char	*get_path;
@@ -20,14 +70,21 @@ void		launch_process(char *path, char *name, char *cmd, char **env)
 	int		child_status;
 	pid_t	child_pid;
 
+	argv = NULL;
 	size = (ft_strlen(path + 1) + ft_strlen(name + 1) + 1);
 	if (!(get_path = malloc(sizeof(char) * size)))
 		return ;
 	get_path = ft_strcat(get_path, path);
 	get_path = ft_strcat(get_path, "/");
 	get_path = ft_strcat(get_path, name);
-	cmd = ft_strtrim(cmd);
-	argv = ft_strsplit(cmd, ' ');
+	if (cmd && cmd[0] && ft_strlen(cmd))
+	{
+		cmd = ft_strtrim(cmd);
+		argv = ft_strsplit(cmd, ' ');
+		argv = add_file_name(argv, name);
+	}
+	else
+		argv = set_argv(argv, name);
 	child_pid = fork();
 	if (child_pid == 0)
 	{
@@ -40,8 +97,6 @@ void		launch_process(char *path, char *name, char *cmd, char **env)
 		while (tpid != child_pid)
 			;
 	}
-	// CHECK WHY WHEN I DO ls -fewfewfwefwefwefweffew i have -fewfewfewfewwefewfwPATH
-	//fix segv and set argv[0] as file name
 }
 
 void		execute_binary(char *name, char *cmd_args, char **env, int res)

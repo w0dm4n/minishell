@@ -91,6 +91,9 @@ int		get_path(char *path, char *args)
 {
 	int		subdir;
 
+	if (!args)
+		if (!(args = ft_strnew(1)))
+			return (-1);
 	subdir = 0;
 	if (args[0] == '.')
 		path = go_above(args, path, 0, 0);

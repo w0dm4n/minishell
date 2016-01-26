@@ -6,7 +6,7 @@
 /*   By: frmarinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 03:31:59 by frmarinh          #+#    #+#             */
-/*   Updated: 2015/12/12 04:57:15 by frmarinh         ###   ########.fr       */
+/*   Updated: 2016/01/26 21:53:34 by frmarinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char			*ft_strtrim(char const *s)
 	int		new;
 
 	new = 0;
+	if (!s || !s[0] || !ft_strlen(s))
+		return (NULL);
 	if (!(tmp = malloc(sizeof(char) * ft_strlen(s) + 1)))
 		return (NULL);
 	start = ft_getstart(s);

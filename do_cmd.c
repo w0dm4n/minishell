@@ -22,6 +22,10 @@ void		do_cmd(char *cmd, char *cmd_args, int res)
 		ft_putstr(get_env("PWD"));
 	else if (!ft_strcmp(cmd, "env"))
 		print_all_env();
+	else if (!ft_strcmp(cmd, "setenv"))
+		change_or_add_env(cmd_args);
+	else if (!ft_strcmp(cmd, "unsetenv"))
+		un_set_env(cmd_args);
 	else
 		execute_binary(cmd, cmd_args, g_env, res);
 }

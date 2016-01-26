@@ -26,5 +26,5 @@ void		read_entry(void)
 		return ;
 	handle_cmd(buffer);
 	read_entry();
-	free(buffer);
+	ft_bzero(buffer, READ_BUFFER);
 }

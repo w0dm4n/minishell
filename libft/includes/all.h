@@ -25,6 +25,9 @@
 # define READ_BUFFER 4096
 # define PATH_MAX_SIZE 16192
 # define COLOR_WHITE "\e[1;37m"
+# define MAX_EXE_NAME 2048
+# define MAX_ARGV_SIZE 8192
+# define MAX_VAR_ENV_SIZE 4096
 void		read_entry(void);
 void		handle_cmd(char *buffer);
 int			check_cmd(char *cmd);
@@ -40,4 +43,8 @@ char		*get_subdir(char *path);
 int			check_access_folder(char *real_path, char *args);
 int			check_execve(char *file_name, char *all_path);
 void		execute_binary(char *name, char *cmd_args, char **env, int res);
+void		free_argv(char **argv);
+void		change_or_add_env(char *args);
+int			get_args_nbr(char *args);
+void		un_set_env(char *args);
 #endif
