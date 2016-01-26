@@ -27,8 +27,8 @@ char	*replace_env(char *env, char *new_value)
 	size = (ft_strlen(new_value + 1) + i);
 	if (!(new = malloc(sizeof(char) * size)))
 		return (NULL);
-	ft_bzero(new, size);
 	i = 0;
+	ft_bzero(new, size);
 	while (env[i] != '=')
 	{
 		new[i] = env[i];
@@ -102,6 +102,7 @@ char	*get_env_value(char *value)
 	size = (ft_strlen(value) - i);
 	if (!(new = (char*)malloc(sizeof(char) * size)))
 		return (NULL);
+	ft_bzero(new, size);
 	i++;
 	while (value[i])
 	{

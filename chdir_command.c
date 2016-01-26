@@ -31,16 +31,18 @@ char		*get_subdir(char *path)
 		i_2++;
 	}
 	new_path[i_2] = '\0';
-	free(path);
+	if (!new_path[0])
+		return ("/");
 	return (new_path);
 }
 
-void		change_folder(char *path)
+void		change_folder(char *path, int change_path)
 {
 	char	*old_pwd;
 
 	old_pwd = get_env("PWD");
-	chdir(path);
+	if (change_path)
+		chdir(path);
 	set_env("PWD", path);
 	set_env("OLDPWD", old_pwd);
 }
@@ -64,9 +66,12 @@ int			get_args_nbr(char *args)
 void		chdir_command(char *args)
 {
 	int		args_nbr;
+	char	*path;
 
-	if (!args)
-		change_folder(get_env("HOME"));
+	if (!(path = (char*)malloc(sizeof(char) * READ_BUFFER)))
+		return ;
+	if (!args || !ft_strcmp(args, " ~"))
+		change_folder(get_env("HOME"), 1);
 	else
 	{
 		args_nbr = get_args_nbr(args);
@@ -74,11 +79,19 @@ void		chdir_command(char *args)
 		if (args_nbr == 1)
 		{
 			if (!ft_strcmp(args, "-"))
-				change_folder(get_env("OLDPWD"));
+				change_folder(get_env("OLDPWD"), 1);
 			else
 			{
-				if (!ft_strcmp(args, "../"))
-					change_folder(get_subdir(get_env("PWD")));														
+				if (!ft_strcmp(args, "/"))
+					change_folder("/", 1);
+				if (!ft_strcmp(args, ".") || !ft_strcmp(args, "./"))
+					return ;
+				if (get_path(get_env("PWD"), args))
+				{
+					chdir(args);
+					getcwd(path, READ_BUFFER);
+					change_folder(path, 0);
+				}
 			}
 		}
 		else if (args_nbr == 2)
@@ -88,4 +101,6 @@ void		chdir_command(char *args)
 		else
 			ft_putstr("cd: too many arguments");
 	}
+	free(args);
+	free(path);
 }

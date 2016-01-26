@@ -12,19 +12,18 @@
 
 #include "all.h"
 
-char	*get_args(char *buffer, int i)
+char	*get_args(char *buffer, int i, int i_2)
 {
 	int		size;
 	char	*get_args;
-	int		i_2;
 
-	i_2 = 0;
 	size = (ft_strlen(buffer + 1) - i);
 	if (size)
 	{
 		if (!(get_args = (char*)malloc(sizeof(char) * size)))
 			return (NULL);
-		while (buffer[i])
+		ft_bzero(get_args, size);
+		while (buffer[i] != '\0' && buffer[i] != '\n')
 		{
 			if (buffer[i] == ' ')
 			{
@@ -55,6 +54,7 @@ void	handle_cmd(char *buffer)
 	{
 		if (!(get_cmd = (char*)malloc(sizeof(char) * pos)))
 			return ;
+		ft_bzero(get_cmd, pos);
 		while (i < pos)
 		{
 			if (buffer[i] != '\n')
@@ -63,7 +63,7 @@ void	handle_cmd(char *buffer)
 		}
 		get_cmd[i] = '\0';
 		if (check_cmd(get_cmd))
-			do_cmd(get_cmd, get_args(buffer, i));
+			do_cmd(get_cmd, get_args(buffer, i, 0));
 		ft_putstr("\n");
 	}
 }

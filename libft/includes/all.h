@@ -23,6 +23,8 @@
 # include <sys/wait.h>
 # include <signal.h>
 # define READ_BUFFER 4096
+# define PATH_MAX_SIZE 16192
+# define COLOR_WHITE "\e[1;37m"
 void		read_entry(void);
 void		handle_cmd(char *buffer);
 int			check_cmd(char *cmd);
@@ -32,4 +34,8 @@ char		*get_env(char *tofind);
 void		print_all_env(void);
 void		set_env(char *env, char *value_to_set);
 char		**g_env;
+void		print_error(char *name, int error_id);
+int			get_path(char *path, char *args);
+char		*get_subdir(char *path);
+int			check_access_folder(char *real_path, char *args);
 #endif
