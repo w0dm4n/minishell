@@ -28,7 +28,7 @@
 void		read_entry(void);
 void		handle_cmd(char *buffer);
 int			check_cmd(char *cmd);
-void		do_cmd(char *cmd, char *cmd_args);
+void		do_cmd(char *cmd, char *cmd_args, int res);
 void		chdir_command(char *args);
 char		*get_env(char *tofind);
 void		print_all_env(void);
@@ -38,4 +38,6 @@ void		print_error(char *name, int error_id);
 int			get_path(char *path, char *args);
 char		*get_subdir(char *path);
 int			check_access_folder(char *real_path, char *args);
+int			check_execve(char *file_name, char *all_path);
+void		execute_binary(char *name, char *cmd_args, char **env, int res);
 #endif

@@ -12,14 +12,16 @@
 
 #include "all.h"
 
-void		do_cmd(char *cmd, char *cmd_args)
+void		do_cmd(char *cmd, char *cmd_args, int res)
 {
 	if (!ft_strcmp(cmd, "cd"))
 		chdir_command(cmd_args);
-	if (!ft_strcmp(cmd, "whoami"))
+	else if (!ft_strcmp(cmd, "whoami"))
 		ft_putstr(get_env("USER"));
-	if (!ft_strcmp(cmd, "pwd"))
+	else if (!ft_strcmp(cmd, "pwd"))
 		ft_putstr(get_env("PWD"));
-	if (!ft_strcmp(cmd, "env"))
+	else if (!ft_strcmp(cmd, "env"))
 		print_all_env();
+	else
+		execute_binary(cmd, cmd_args, g_env, res);
 }

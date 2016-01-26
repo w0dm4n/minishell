@@ -46,8 +46,10 @@ void	handle_cmd(char *buffer)
 	char	*get_cmd;
 	int		pos;
 	int		i;
+	int		res;
 
 	i = 0;
+	res = 0;
 	buffer = ft_strtrim(buffer);
 	pos = ft_strposition(buffer, " ");
 	if (pos)
@@ -62,8 +64,8 @@ void	handle_cmd(char *buffer)
 			i++;
 		}
 		get_cmd[i] = '\0';
-		if (check_cmd(get_cmd))
-			do_cmd(get_cmd, get_args(buffer, i, 0));
+		if ((res = check_cmd(get_cmd)) >= 0)
+			do_cmd(get_cmd, get_args(buffer, i, 0), res);
 		ft_putstr("\n");
 	}
 }

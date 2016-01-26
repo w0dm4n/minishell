@@ -14,19 +14,23 @@
 
 int		check_cmd(char *cmd)
 {
+	int res;
+
+	res = 0;
 	if (!ft_strcmp(cmd, "cd") ||
 		!ft_strcmp(cmd, "setenv") ||
 		!ft_strcmp(cmd, "env") ||
 		!ft_strcmp(cmd, "exit") ||
-		!ft_strcmp(cmd, "clear") ||
 		!ft_strcmp(cmd, "whoami") ||
 		!ft_strcmp(cmd, "pwd"))
 		return (1);
-	//else if (check_execve) CHECK IF WE FOUND THE BASTERD IN PATH FOLDER
-	else
+	else if ((res = check_execve(cmd, get_env("PATH"))) >= 0)
+		return (res);
+	else if (res < 0)
 	{
 		ft_putstr("minishell: command not found: ");
 		ft_putstr(cmd);
-		return (0);
+		return (-1);
 	}
+	return (-1);
 }
