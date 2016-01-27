@@ -120,8 +120,9 @@ char	*get_env(char *to_find)
 	int		i_2;
 	char	*tmp_char;
 
-	if (!(tmp_char = ft_strnew(100)))
+	if (!(tmp_char = malloc(sizeof(char) * 100)))
 		return (NULL);
+	ft_bzero(tmp_char, 100);
 	i = 0;
 	i_2 = 0;
 	while (g_env[i])

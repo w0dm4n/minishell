@@ -12,15 +12,11 @@
 
 #include "all.h"
 
-void		delete_var_from_env(char *to_del, int i_3)
+void		delete_var_from_env(char *to_del, int i_3, int i, int i_2)
 {
-	int		i;
-	int		i_2;
 	char	**new_env;
 	char	*var_name;
 
-	i = 0;
-	i_2 = 0;
 	if (!(var_name = ft_strnew(1024)))
 		return ;
 	if (!(new_env = malloc(sizeof(char*) * MAX_VAR_ENV_SIZE)))
@@ -75,13 +71,10 @@ void		un_set_env(char *args)
 			if (env_content != NULL)
 			{
 				if (check_if_needed(all_args[0]))
-					delete_var_from_env(all_args[0], 0);
+					delete_var_from_env(all_args[0], 0, 0, 0);
 			}
 			else
-			{
-				ft_putstr("unsetenv: can't find this value on the current");
-				ft_putstr(" environment");
-			}
+				ft_putstr("unsetenv: can't find this value on the environment");
 		}
 		else
 			ft_putstr("unsetenv: wrong argument (syntax: unsetenv VALUE)");

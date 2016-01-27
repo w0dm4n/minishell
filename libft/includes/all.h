@@ -28,7 +28,7 @@
 # define MAX_EXE_NAME 2048
 # define MAX_ARGV_SIZE 8192
 # define MAX_VAR_ENV_SIZE 4096
-void		read_entry(void);
+void		read_entry(int first);
 void		handle_cmd(char *buffer);
 int			check_cmd(char *cmd);
 void		do_cmd(char *cmd, char *cmd_args, int res);

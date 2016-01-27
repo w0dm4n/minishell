@@ -12,9 +12,8 @@
 
 #include "all.h"
 
-char			*try_hidden_folder(char *path, int i, int i_2)
+char			*try_hidden_folder(char *path, int i, int i_2, char *new)
 {
-	char	*new;
 	char	*file_name;
 
 	if (!(new = malloc(sizeof(char) * PATH_MAX_SIZE)))
@@ -51,7 +50,7 @@ struct stat		*get_folder_stat(char *path, struct stat *file_stat)
 		return (NULL);
 	if (lstat(path, tmp) < 0)
 	{
-		path = try_hidden_folder(path, 0, 0);
+		path = try_hidden_folder(path, 0, 0, NULL);
 		if (lstat(path, tmp) < 0)
 			return (NULL);
 	}

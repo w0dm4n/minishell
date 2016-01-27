@@ -12,19 +12,29 @@
 
 #include "all.h"
 
-void		read_entry(void)
+void		read_entry(int first)
 {
 	char	*buffer;
 
-	if (!(buffer = (char*)malloc(sizeof(char) * READ_BUFFER)))
-		return ;
-	ft_putstr(COLOR_WHITE);
-	ft_putstr("$> ");
-	read(0, buffer, READ_BUFFER);
-	if (buffer[0] == 'e' && buffer[1] == 'x' && buffer[2] == 'i'
-		&& buffer[3] == 't')
-		return ;
-	handle_cmd(buffer);
-	read_entry();
-	ft_bzero(buffer, READ_BUFFER);
+	if (!first)
+	{
+		first = 1;
+		handle_cmd("clear");
+		handle_cmd("clear");
+		read_entry(first);
+	}
+	else
+	{
+		if (!(buffer = (char*)malloc(sizeof(char) * READ_BUFFER)))
+			return ;
+		ft_putstr(COLOR_WHITE);
+		ft_putstr("$> ");
+		read(0, buffer, READ_BUFFER);
+		if (buffer[0] == 'e' && buffer[1] == 'x' && buffer[2] == 'i'
+			&& buffer[3] == 't')
+			return ;
+		handle_cmd(buffer);
+		read_entry(first);
+		ft_bzero(buffer, READ_BUFFER);
+	}
 }

@@ -18,6 +18,6 @@ int		main(int argc, char **argv, char **env_p)
 	if (argc != 1 || argv[1])
 		ft_putstr("Minishell do not take any argument !\n");
 	else
-		read_entry();
+		read_entry(0);
 	return (0);
 }
