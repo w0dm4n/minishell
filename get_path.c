@@ -15,10 +15,8 @@
 char	*add_folder_on_path(char *path, char *folder)
 {
 	char	*new_path;
-	int		new_size;
 
-	new_size = (ft_strlen(path + 1) + (ft_strlen(folder + 1)));
-	if (!(new_path = (char*)malloc(sizeof(char) * new_size)))
+	if (!(new_path = (char*)malloc(sizeof(char) * PATH_MAX_SIZE)))
 		return (NULL);
 	new_path = ft_strcat(new_path, path);
 	new_path = ft_strcat(new_path, "/");
@@ -31,29 +29,25 @@ char	*go_above(char *args, char *path, int i, int i_2)
 	char	*folder;
 
 	folder = ft_strnew(1024);
-	while (args[i])
+	while (args[i++])
 	{
-		if (args[i] == '.' && args[i + 1] == '.'
-			&& args[i + 2] == '/')
+		if (args[i] == '.' && args[i + 1] == '.' && args[i + 2] == '/')
 			path = get_subdir(path);
 		else
 		{
 			while (args[i])
 			{
-				if (args[i] == '/' ||
-					args[i] == '.')
+				if (args[i] == '/' || args[i] == '.')
 					break ;
 				folder[i_2] = args[i];
 				i++;
 				i_2++;
 			}
-			folder[i_2] = '\0';
 			if (folder[0])
 				path = add_folder_on_path(path, folder);
 			i_2 = 0;
 			ft_bzero(folder, 1024);
 		}
-		i++;
 	}
 	free(folder);
 	return (path);
@@ -96,7 +90,7 @@ int		get_path(char *path, char *args)
 			return (-1);
 	subdir = 0;
 	if (args[0] == '.')
-		path = go_above(args, path, 0, 0);
+		path = go_above(args, path, -1, 0);
 	else if (args[0] == '/')
 		path = args;
 	else

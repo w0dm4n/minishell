@@ -17,8 +17,7 @@ void		delete_var_from_env(char *to_del, int i_3, int i, int i_2)
 	char	**new_env;
 	char	*var_name;
 
-	if (!(var_name = ft_strnew(1024)))
-		return ;
+	var_name = ft_strnew(1024);
 	if (!(new_env = malloc(sizeof(char*) * MAX_VAR_ENV_SIZE)))
 		return ;
 	ft_bzero(new_env, MAX_VAR_ENV_SIZE);

@@ -12,23 +12,17 @@
 
 #include "all.h"
 
-char	*replace_env(char *env, char *new_value)
+char	*replace_env(char *env, char *new_value, int i, int i_2)
 {
-	int		i;
-	int		i_2;
 	char	*new;
-	int		size;
 
-	i = 0;
-	i_2 = 0;
 	while (env[i] != '=')
 		i++;
 	i++;
-	size = (ft_strlen(new_value + 1) + i);
-	if (!(new = malloc(sizeof(char) * size)))
+	if (!(new = malloc(sizeof(char) * (ft_strlen(new_value + 1) + i))))
 		return (NULL);
+	ft_bzero(new, (ft_strlen(new_value + 1) + i));
 	i = 0;
-	ft_bzero(new, size);
 	while (env[i] != '=')
 	{
 		new[i] = env[i];
@@ -66,7 +60,7 @@ void	set_env(char *env, char *value_to_set)
 			i_2++;
 		}
 		if (!ft_strcmp(tmp_char, env))
-			g_env[i] = replace_env(g_env[i], value_to_set);
+			g_env[i] = replace_env(g_env[i], value_to_set, 0, 0);
 		ft_bzero(tmp_char, 100);
 		i++;
 		i_2 = 0;

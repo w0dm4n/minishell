@@ -51,15 +51,24 @@ char		**add_file_name(char **argv, char *name)
 	return (new);
 }
 
-char		**set_argv(char **argv, char *name)
+void		launch_process_ext(char *get_path, char **argv, char **env)
 {
-	if (!argv)
+	int		child_status;
+	pid_t	child_pid;
+	pid_t	tpid;
+
+	child_pid = fork();
+	if (child_pid == 0)
 	{
-		if (!(argv = malloc(sizeof(char*) * 1)))
-			return (NULL);
-		argv[0] = get_name(name);
+		execve(get_path, argv, env);
+		exit(0);
 	}
-	return (argv);
+	else
+	{
+		tpid = wait(&child_status);
+		while (tpid != child_pid)
+			;
+	}
 }
 
 void		launch_process(char *path, char *name, char *cmd, char **env)
@@ -67,8 +76,6 @@ void		launch_process(char *path, char *name, char *cmd, char **env)
 	char	*get_path;
 	int		size;
 	char	**argv;
-	int		child_status;
-	pid_t	child_pid;
 
 	argv = NULL;
 	size = (ft_strlen(path + 1) + ft_strlen(name + 1) + 1);
@@ -85,18 +92,7 @@ void		launch_process(char *path, char *name, char *cmd, char **env)
 	}
 	else
 		argv = set_argv(argv, name);
-	child_pid = fork();
-	if (child_pid == 0)
-	{
-		execve(get_path, argv, env);
-		exit(0);
-	}
-	else
-	{
-		pid_t tpid = wait(&child_status);
-		while (tpid != child_pid)
-			;
-	}
+	launch_process_ext(get_path, argv, env);
 }
 
 void		execute_binary(char *name, char *cmd_args, char **env, int res)

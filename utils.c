@@ -25,3 +25,14 @@ void	free_argv(char **argv)
 	}
 	free(argv);
 }
+
+char	**set_argv(char **argv, char *name)
+{
+	if (!argv)
+	{
+		if (!(argv = malloc(sizeof(char*) * 1)))
+			return (NULL);
+		argv[0] = get_name(name);
+	}
+	return (argv);
+}

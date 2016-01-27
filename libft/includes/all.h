@@ -28,6 +28,7 @@
 # define MAX_EXE_NAME 2048
 # define MAX_ARGV_SIZE 8192
 # define MAX_VAR_ENV_SIZE 4096
+
 void		read_entry(int first);
 void		handle_cmd(char *buffer);
 int			check_cmd(char *cmd);
@@ -47,4 +48,7 @@ void		free_argv(char **argv);
 void		change_or_add_env(char *args);
 int			get_args_nbr(char *args);
 void		un_set_env(char *args);
+void		chdir_command_ext(char *args, char *path, int args_nbr);
+void		change_folder(char *path, int change_path);
+char		**set_argv(char **argv, char *name);
 #endif

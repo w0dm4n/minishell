@@ -65,7 +65,6 @@ int			get_args_nbr(char *args)
 
 void		chdir_command(char *args)
 {
-	int		args_nbr;
 	char	*path;
 
 	if (!(path = (char*)malloc(sizeof(char) * READ_BUFFER)))
@@ -76,30 +75,7 @@ void		chdir_command(char *args)
 			change_folder(get_env("HOME"), 1);
 	}
 	else
-	{
-		args_nbr = get_args_nbr(args);
-		args = ft_strtrim(args);
-		if (args_nbr == 1)
-		{
-			if (!ft_strcmp(args, "-"))
-				change_folder(get_env("OLDPWD"), 1);
-			else
-			{
-				if (!ft_strcmp(args, "/"))
-					change_folder("/", 1);
-				if (!ft_strcmp(args, ".") || !ft_strcmp(args, "./"))
-					return ;
-				if (get_path(get_env("PWD"), args))
-				{
-					chdir(args);
-					getcwd(path, READ_BUFFER);
-					change_folder(path, 0);
-				}
-			}
-		}
-		else
-			ft_putstr("cd: too many arguments");
-	}
+		chdir_command_ext(args, path, 0);
 	free(args);
 	free(path);
 }
