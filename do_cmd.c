@@ -26,6 +26,8 @@ void		do_cmd(char *cmd, char *cmd_args, int res)
 		change_or_add_env(cmd_args);
 	else if (!ft_strcmp(cmd, "unsetenv"))
 		un_set_env(cmd_args);
+	else if (cmd[0] == '.' && cmd[1] == '/')
+		execute_binary_from_current_folder(cmd, cmd_args);
 	else
 		execute_binary(cmd, cmd_args, g_env, res);
 }

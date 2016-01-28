@@ -36,3 +36,12 @@ char	**set_argv(char **argv, char *name)
 	}
 	return (argv);
 }
+
+void	sig_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		if (g_current_process != 1)
+			exit(0);
+	}
+}

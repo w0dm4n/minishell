@@ -12,14 +12,18 @@
 
 #include "all.h"
 
-int		check_stat(char *full_path)
+int		check_stat(char *full_path, int print)
 {
 	struct stat		*file_stat;
 
 	if (!(file_stat = malloc(sizeof(struct stat*))))
 		return (-1);
 	if (lstat(full_path, file_stat) < 0)
+	{
+		if (print == 1)
+			ft_putstr("executable not found on the current directory !");
 		return (0);
+	}
 	if (S_ISDIR(file_stat->st_mode))
 	{
 		ft_putstr("executable set is a directory !");
@@ -44,7 +48,7 @@ int		check_file(char *file, char *path)
 	full_path = ft_strcat(full_path, path);
 	full_path = ft_strcat(full_path, "/");
 	full_path = ft_strcat(full_path, file);
-	if (check_stat(full_path))
+	if (check_stat(full_path, 0))
 		return (1);
 	ft_bzero(full_path, size);
 	return (-1);

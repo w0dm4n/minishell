@@ -65,9 +65,10 @@ void		launch_process_ext(char *get_path, char **argv, char **env)
 	}
 	else
 	{
+		g_current_process = 1;
+		signal(SIGINT, sig_handler);
 		tpid = wait(&child_status);
-		while (tpid != child_pid)
-			;
+		g_current_process = 0;
 	}
 }
 
@@ -78,7 +79,7 @@ void		launch_process(char *path, char *name, char *cmd, char **env)
 	char	**argv;
 
 	argv = NULL;
-	size = (ft_strlen(path + 1) + ft_strlen(name + 1) + 1);
+	size = READ_BUFFER;
 	if (!(get_path = malloc(sizeof(char) * size)))
 		return ;
 	get_path = ft_strcat(get_path, path);

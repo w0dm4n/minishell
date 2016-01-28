@@ -12,7 +12,7 @@
 
 NAME = minishell
 
-SRCS_NAME = main.c read_entry.c handle_cmd.c check_cmd.c do_cmd.c chdir_command.c chdir_command_ext.c env_v.c get_path.c check_access_folder.c check_execve.c execute_binary.c utils.c setenv_command.c unsetenv_command.c
+SRCS_NAME = main.c read_entry.c handle_cmd.c check_cmd.c do_cmd.c chdir_command.c chdir_command_ext.c env_v.c get_path.c check_access_folder.c check_execve.c execute_binary.c utils.c setenv_command.c unsetenv_command.c execute_binary_from_current_folder.c
 
 LIB_FOLDER = libft/
 

@@ -23,7 +23,8 @@ int		check_cmd(char *cmd)
 		!ft_strcmp(cmd, "exit") ||
 		!ft_strcmp(cmd, "whoami") ||
 		!ft_strcmp(cmd, "pwd") ||
-		!ft_strcmp(cmd, "unsetenv"))
+		!ft_strcmp(cmd, "unsetenv")
+		|| (cmd[0] == '.' && cmd[1] == '/'))
 		return (1);
 	else if ((res = check_execve(cmd, get_env("PATH"))) >= 0)
 		return (res);
