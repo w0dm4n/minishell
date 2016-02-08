@@ -21,7 +21,7 @@ int		check_stat(char *full_path, int print)
 	if (lstat(full_path, file_stat) < 0)
 	{
 		if (print == 1)
-			ft_putstr("executable not found on the current directory !");
+			ft_putstr("executable not found !");
 		return (0);
 	}
 	if (S_ISDIR(file_stat->st_mode))

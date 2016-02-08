@@ -6,7 +6,7 @@
 /*   By: frmarinh <frmarinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 22:49:11 by frmarinh          #+#    #+#             */
-/*   Updated: 2016/01/24 22:50:17 by frmarinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 10:56:03 by frmarinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		check_cmd(char *cmd)
 		!ft_strcmp(cmd, "whoami") ||
 		!ft_strcmp(cmd, "pwd") ||
 		!ft_strcmp(cmd, "unsetenv")
-		|| (cmd[0] == '.' && cmd[1] == '/'))
+		|| (cmd[0] == '.' && cmd[1] == '/')
+		|| cmd[0] == '/')
 		return (1);
 	else if ((res = check_execve(cmd, get_env("PATH"))) >= 0)
 		return (res);

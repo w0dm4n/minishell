@@ -57,4 +57,5 @@ int			check_stat(char *full_path, int print);
 void		launch_process(char *path, char *name, char *cmd, char **env);
 int			g_current_process;
 void		sig_handler(int signo);
+void		execute_from_asked_dir(char *cmd, char **env, char *cmd_args);
 #endif

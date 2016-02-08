@@ -6,13 +6,13 @@
 #    By: frmarinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/17 08:34:59 by frmarinh          #+#    #+#              #
-#    Updated: 2016/01/25 01:07:27 by frmarinh         ###   ########.fr        #
+#    Updated: 2016/02/08 11:00:14 by frmarinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRCS_NAME = main.c read_entry.c handle_cmd.c check_cmd.c do_cmd.c chdir_command.c chdir_command_ext.c env_v.c get_path.c check_access_folder.c check_execve.c execute_binary.c utils.c setenv_command.c unsetenv_command.c execute_binary_from_current_folder.c
+SRCS_NAME = main.c read_entry.c handle_cmd.c check_cmd.c do_cmd.c chdir_command.c chdir_command_ext.c env_v.c get_path.c check_access_folder.c check_execve.c execute_binary.c utils.c setenv_command.c unsetenv_command.c execute_binary_from_current_folder.c execute_from_asked_dir.c
 
 LIB_FOLDER = libft/
 

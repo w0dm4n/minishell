@@ -6,7 +6,7 @@
 /*   By: frmarinh <frmarinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 22:50:27 by frmarinh          #+#    #+#             */
-/*   Updated: 2016/01/24 22:51:21 by frmarinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 10:57:05 by frmarinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void		do_cmd(char *cmd, char *cmd_args, int res)
 		un_set_env(cmd_args);
 	else if (cmd[0] == '.' && cmd[1] == '/')
 		execute_binary_from_current_folder(cmd, cmd_args);
+	else if (cmd[0] == '/')
+		execute_from_asked_dir(cmd, g_env, cmd_args);
 	else
 		execute_binary(cmd, cmd_args, g_env, res);
 }
