@@ -20,8 +20,8 @@ void		read_entry(int first)
 	{
 		first = 1;
 		// malloc error break shit sometimes
-		handle_cmd("clear");
-		handle_cmd("clear");
+		//handle_cmd("clear");
+		//handle_cmd("clear");
 		read_entry(first);
 	}
 	else
