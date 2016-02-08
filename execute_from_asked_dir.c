@@ -12,6 +12,31 @@
 
 #include "all.h"
 
+char	**add_path( char **argv, char *path)
+{
+	char	**new;
+	int		size;
+	int		i;
+
+	size = 0;
+	i = 0;
+	while (argv[size])
+		size++;
+	if (!(new = malloc(sizeof(char*) * MAX_ARGV_SIZE)))
+		return (NULL);
+	new = ft_set_null(new);
+	new[0] = path;
+	size = 1;
+	while (argv[i])
+	{
+		new[size] = ft_strdup(argv[i]);
+		i++;
+		size++;
+	}
+	free_argv(argv);
+	return (new);
+}
+
 void	launch_process_from_asked_dir(char *path, char *args, char **env)
 {
 	char	**argv;
@@ -25,14 +50,14 @@ void	launch_process_from_asked_dir(char *path, char *args, char **env)
 	}
 	else
 		argv = set_argv(argv, path);
-	int i = 0;
+	/*int i = 0;
 	while (argv[i])
 	{
 		ft_putstr(argv[i]);
 		ft_putstr("\n");
 		i++;
-	}
-	//launch_process_ext(path, argv, env);
+	}*/
+	launch_process_ext(path, argv, env);
 }
 
 void	execute_from_asked_dir(char *cmd, char **env, char *cmd_args)

@@ -6,7 +6,7 @@
 #    By: frmarinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/17 08:34:59 by frmarinh          #+#    #+#              #
-#    Updated: 2016/02/08 11:00:14 by frmarinh         ###   ########.fr        #
+#    Updated: 2016/02/08 11:31:20 by frmarinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIB_FOLDER = libft/
 
 O_NAME = $(SRCS_NAME:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror -ggdb -O3
+FLAGS = -ggdb -O3
 
 INCLUDE_FOLDER = libft/includes/
 
