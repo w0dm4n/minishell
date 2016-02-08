@@ -12,10 +12,31 @@
 
 #include "all.h"
 
+void	launch_process_from_asked_dir(char *path, char *args, char **env)
+{
+	char	**argv;
+
+	argv = NULL;
+	if (args && args[0] && ft_strlen(args))
+	{
+		args = ft_strtrim(args);
+		argv = ft_strsplit(args, ' ');
+		argv = add_path(argv, path);
+	}
+	else
+		argv = set_argv(argv, path);
+	int i = 0;
+	while (argv[i])
+	{
+		ft_putstr(argv[i]);
+		ft_putstr("\n");
+		i++;
+	}
+	//launch_process_ext(path, argv, env);
+}
+
 void	execute_from_asked_dir(char *cmd, char **env, char *cmd_args)
 {
-	env = NULL;
-	cmd_args = NULL;
 	if (check_stat(cmd, 1))
-		launch_process(cmd, cmd, "\0", env);
+		launch_process_from_asked_dir(cmd, cmd_args, env);
 }
